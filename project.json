@@ -1,0 +1,8 @@
+{
+  "slug": "incremental-document-index",
+  "title": "Incremental local document index",
+  "description": "Hashes UTF-8 `.txt` and `.md` files, detects additions/changes/deletions, and builds a lexical inverted index with per-document term counts. Unchanged files reuse the prior token counts. Symlinked files are skipped, each file is limited to 1 MiB, and malformed prior manifests are rejected. Use `--directory ./documents --state index.json --query \"voice\"` to persist and query the manifest. Atomic replacement prevents partial JSON writes; concurrent writer coordination is out of scope.",
+  "category": "agents",
+  "demo_args": [],
+  "expected_exit": 0
+}
