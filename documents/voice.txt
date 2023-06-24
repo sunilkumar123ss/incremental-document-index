@@ -1,0 +1,1 @@
+Voice frame ordering and latency are measured with synthetic audio frames.
