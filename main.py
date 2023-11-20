@@ -49,3 +49,11 @@ def update(directory,previous=None):
     changes["deleted"]=sorted(set(old)-set(new))
     return {"version":1,"documents":new},changes
 
+
+def inverted(manifest):
+    check_manifest(manifest)
+    index={}
+    for doc,record in manifest["documents"].items():
+        for term,count in record["terms"].items():index.setdefault(term,{})[doc]=count
+    return dict(sorted(index.items()))
+
