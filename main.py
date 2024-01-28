@@ -57,3 +57,9 @@ def inverted(manifest):
         for term,count in record["terms"].items():index.setdefault(term,{})[doc]=count
     return dict(sorted(index.items()))
 
+
+def search(manifest,query):
+    index=inverted(manifest);scores=Counter()
+    for term in term_counts(query):scores.update(index.get(term,{}))
+    return [{"document":doc,"term_frequency_score":score} for doc,score in sorted(scores.items(),key=lambda row:(-row[1],row[0]))]
+
