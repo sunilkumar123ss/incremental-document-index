@@ -4,7 +4,7 @@ This reference implementation and all of the following milestone commits were pr
 
 **Every recorded author and committer date in this timeline is synthetic. These dates are not evidence that the code was written, tested, deployed, or used professionally in the past.**
 
-This snapshot is milestone 7 of 16. It is an incomplete tutorial stage; source, fixtures, tests, the CLI, and automation are introduced progressively.
+This snapshot is milestone 8 of 16. It is an incomplete tutorial stage; source, fixtures, tests, the CLI, and automation are introduced progressively.
 
 The progression decomposes already-completed October 2026 code into meaningful additions. It is not recovered original development history. Publication time is separate from the synthetic Git timestamps.
 
@@ -19,7 +19,7 @@ The progression decomposes already-completed October 2026 code into meaningful a
 | 5 | 2023-11-17T11:53:02+05:30 | Implement update (present) |
 | 6 | 2023-11-20T13:35:53+05:30 | Implement inverted (present) |
 | 7 | 2024-01-28T15:01:19+05:30 | Implement search (present) |
-| 8 | 2024-09-30T18:48:07+05:30 | Implement save (later stage) |
+| 8 | 2024-09-30T18:48:07+05:30 | Implement save (present) |
 | 9 | 2024-10-07T09:26:40+05:30 | Expose the command-line demonstration and input handling (later stage) |
 | 10 | 2025-05-24T15:26:58+05:30 | Test add change delete and unchanged (later stage) |
 | 11 | 2025-07-10T17:25:41+05:30 | Test symlink skipped (later stage) |

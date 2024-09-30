@@ -63,3 +63,14 @@ def search(manifest,query):
     for term in term_counts(query):scores.update(index.get(term,{}))
     return [{"document":doc,"term_frequency_score":score} for doc,score in sorted(scores.items(),key=lambda row:(-row[1],row[0]))]
 
+
+def save(path,manifest):
+    path=Path(path);path.parent.mkdir(parents=True,exist_ok=True)
+    fd,name=tempfile.mkstemp(prefix=".index-",dir=path.parent)
+    try:
+        with os.fdopen(fd,"w") as stream:
+            json.dump(manifest,stream,indent=2,sort_keys=True);stream.flush();os.fsync(stream.fileno())
+        os.replace(name,path)
+    finally:
+        if os.path.exists(name):os.unlink(name)
+
