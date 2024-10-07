@@ -74,3 +74,19 @@ def save(path,manifest):
     finally:
         if os.path.exists(name):os.unlink(name)
 
+
+def main():
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--directory",type=Path,default=Path(__file__).with_name("documents"))
+    parser.add_argument("--state",type=Path,help="optional manifest to update; no file is written when omitted")
+    parser.add_argument("--query",default="voice latency")
+    args=parser.parse_args()
+    try:
+        previous=json.loads(args.state.read_text()) if args.state and args.state.exists() else None
+        manifest,changes=update(args.directory,previous)
+        if args.state:save(args.state,manifest)
+        result={"changes":changes,"document_count":len(manifest["documents"]),"matches":search(manifest,args.query)}
+    except (ValueError,OSError,TypeError) as exc:parser.error(str(exc))
+    print(json.dumps(result,indent=2))
+
+if __name__ == "__main__":main()
