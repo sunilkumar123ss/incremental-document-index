@@ -32,4 +32,9 @@ class IndexTests(unittest.TestCase):
         (self.root/"a.txt").unlink()
         fourth,changes=update(self.root,third)
         self.assertEqual(changes["deleted"],["a.txt"]);self.assertEqual(search(fourth,"retrieval"),[])
+    def test_symlink_skipped(self):
+        (self.root/"linked.txt").symlink_to(self.root/"a.txt")
+        state,changes=update(self.root)
+        self.assertNotIn("linked.txt",state["documents"])
+        self.assertIn("linked.txt",changes["skipped_symlinks"])
 
