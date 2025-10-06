@@ -37,4 +37,8 @@ class IndexTests(unittest.TestCase):
         state,changes=update(self.root)
         self.assertNotIn("linked.txt",state["documents"])
         self.assertIn("linked.txt",changes["skipped_symlinks"])
+    def test_corrupt_prior_and_oversize_rejected(self):
+        with self.assertRaises(ValueError):update(self.root,{"version":2,"documents":{}})
+        (self.root/"large.txt").write_bytes(b"x"*(MAX_BYTES+1))
+        with self.assertRaises(ValueError):update(self.root)
 
