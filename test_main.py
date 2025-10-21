@@ -41,4 +41,8 @@ class IndexTests(unittest.TestCase):
         with self.assertRaises(ValueError):update(self.root,{"version":2,"documents":{}})
         (self.root/"large.txt").write_bytes(b"x"*(MAX_BYTES+1))
         with self.assertRaises(ValueError):update(self.root)
+    def test_bad_utf8_rejected(self):
+        (self.root/"bad.txt").write_bytes(b"\xff")
+        with self.assertRaises(ValueError):update(self.root)
 
+if __name__ == "__main__":unittest.main()
